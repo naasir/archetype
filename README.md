@@ -14,10 +14,18 @@ _"... when a man has discovered the instrument which is naturally adapted to eac
 
 This repo is an exercise and discussion in modeling some common subdomains found in most software platforms. These subdomains include:
 
-1. Users & Groups
-2. Notifications
+1. Contact Info
+  * EmailAddress
+  * Uri
+  * LatLong
 
+2. Users & Groups
+3. Notifications
 The goal here is to model these subdomains using type-driven, event-driven and domain-driven design principles.
+
+## Smart Constructor
+
+Most of the types in this project implement "Smart" constructors, which ensure that _only_ valid instances of a specific type can be instantiated. By ensuring that all instances of a specific type are valid and immutable, consumers of this type are unburdening from having to implement a bunch of boilerplate error handling logic.
 
 ## Quickstart
 
