@@ -25,7 +25,7 @@ The goal here is to model these subdomains using type-driven, event-driven and d
 
 ## Smart Constructor
 
-Most of the types in this project implement "Smart" constructors, which ensure that _only_ valid instances of a specific type can be instantiated. By ensuring that all instances of a specific type are valid and immutable, consumers of this type are unburdening from having to implement a bunch of boilerplate error handling logic.
+Most of the types in this project implement "Smart" constructors, which ensure that _only_ valid instances of a specific type can be instantiated. By ensuring that all instances of a specific type are valid and immutable, consumers of this type are unburdened from having to implement a bunch of boilerplate error handling logic.
 
 ## Quickstart
 
@@ -58,3 +58,7 @@ Issue the following commands from a shell to run the test suite:
 * [Scala](http://www.scala-lang.org/): The primary development language of this project.
 * [SBT](http://www.scala-sbt.org/): Build tool for Scala and Java projects similar to Maven and Ant.
 * [ScalaTest](http://www.scalatest.org/): Unit-testing library for Scala.
+
+## Inspiration
+
+* [F# For Fun & Profit: Designing With Types](https://fsharpforfunandprofit.com/posts/designing-with-types-intro/)
