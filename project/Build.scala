@@ -43,7 +43,8 @@ object Build extends Build {
 
   lazy val dependencySettings = Seq(
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats"      % "0.7.2",
+      "commons-codec"  % "commons-codec" % "1.10",
+      "org.typelevel" %% "cats"          % "0.7.2",
       // -- Testing --
       "org.scalactic" %% "scalactic" % "3.0.0",
       "org.scalatest" %% "scalatest" % "3.0.0" % "test"

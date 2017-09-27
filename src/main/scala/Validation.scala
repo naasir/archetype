@@ -32,29 +32,37 @@ object Validation {
     case _ => valid(valueCollection)
   }
 
-  /** Checks the specified string to see if it is a valid email address
+  /** Checks the specified string to see if it matches the specified pattern
     *
     * @param valueOpt the potential value to validate
     * @param field the name of the field on the resource
     * @param resource the name of the resource
     * @return Either the value or a collection of validation errors
     */
-  def isEmail(valueOpt: Option[String], field: String, resource: String): ValidatedNel[ValidationError, Option[String]] = {
-    this.isPattern(valueOpt, field, resource, RegexPatterns.email)
-  }
-
-  /** Checks the specified string to see if it is a valid email address
-    *
-    * @param valueOpt the potential value to validate
-    * @param field the name of the field on the resource
-    * @param resource the name of the resource
-    * @return Either the value or a collection of validation errors
-    */
-  def isPattern(valueOpt: Option[String], field: String, resource: String, pattern: Regex): ValidatedNel[ValidationError, Option[String]] = valueOpt match {
+  def matches(valueOpt: Option[String], field: String, resource: String, pattern: Regex): ValidatedNel[ValidationError, Option[String]] = valueOpt match {
     case None => valid(valueOpt)
-    case Some(input) => RegexPatterns.email.findFirstIn(input) match {
+    case Some(input) => pattern.findFirstIn(input) match {
       case None => invalidNel(InvalidFormat(field, resource))
       case Some(_) => valid(valueOpt)
+    }
+  }
+
+  /** Checks the exact length of a specified string
+    *
+    * @param valueOpt the potential value to validate
+    * @param field the name of the field on the resource
+    * @param resource the name of the resource
+    * @param exact the exact length for the field
+    * @return Either the value or a collection of validation errors
+    */
+  def hasLengthExact(valueOpt: Option[String], field: String, resource: String, exact: Int): ValidatedNel[ValidationError, Option[String]] = {
+    val length = valueOpt.getOrElse("").trim.length
+
+    if (valueOpt.isDefined && length != exact) {
+      invalidNel(InvalidLength(field, resource).withMessage(s"${field} should be exactly ${exact} characters, but was ${length} characters."))
+    }
+    else {
+      valid(valueOpt)
     }
   }
 
@@ -70,7 +78,7 @@ object Validation {
     val length = valueOpt.getOrElse("").trim.length
 
     if (valueOpt.isDefined && length > max) {
-      invalidNel(InvalidLength(field, resource).withMessage(s"${field} should be at most ${max} characters."))
+      invalidNel(InvalidLength(field, resource).withMessage(s"${field} should be at most ${max} characters, but was ${length} characters."))
     }
     else {
       valid(valueOpt)
@@ -90,7 +98,7 @@ object Validation {
     val length = valueOpt.getOrElse("").trim.length
 
     if (valueOpt.isDefined && (length < min || length > max)) {
-      invalidNel(InvalidLength(field, resource).withMessage(s"${field} should be between ${min} and ${max} characters."))
+      invalidNel(InvalidLength(field, resource).withMessage(s"${field} should be between ${min} and ${max} characters, but was ${length} characters."))
     }
     else {
       valid(valueOpt)

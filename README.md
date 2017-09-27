@@ -12,15 +12,26 @@ _"... when a man has discovered the instrument which is naturally adapted to eac
 ---
 ## Summary
 
-This repo is an exercise and discussion in modeling some common subdomains found in most software platforms. These subdomains include:
+This repo is an exercise and discussion in modeling a few common subdomains found in most software platforms. These subdomains include:
 
-1. Contact Info
-  * EmailAddress
-  * Uri
-  * LatLong
+1. Values
+  * _(DONE)_ UUID
+  * _(PLANNED)_ NonEmptyString
 
-2. Users & Groups
-3. Notifications
+2. Domain
+  * _(PLANNED)_ Entity
+  * _(PLANNED)_ Message
+  * _(PLANNED)_ Command
+  * _(PLANNED)_ Query
+  * _(PLANNED)_ Validator
+
+3. Communication
+  * _(DONE)_ EmailAddress
+  * _(PLANNED)_ Uri
+
+4. Users & Groups
+  * _(PlANNED)_ User
+
 The goal here is to model these subdomains using type-driven, event-driven and domain-driven design principles.
 
 ## Smart Constructor
